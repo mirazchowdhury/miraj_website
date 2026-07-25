@@ -8,6 +8,9 @@
         content="Portfolio of Miraj Uddin Chowdhury, an NLP researcher and software developer focused on efficient language models, Bangla NLP, RAG, OCR, and enterprise AI automation.">
     <meta name="theme-color" content="#0a0a0a">
     <title>Miraj Uddin Chowdhury | NLP Researcher and Software Developer</title>
+    <link id="siteFavicon" rel="icon" type="image/jpeg" href="Miraj.jpeg">
+    <link rel="shortcut icon" type="image/jpeg" href="Miraj.jpeg">
+    <link rel="apple-touch-icon" href="Miraj.jpeg">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -2157,6 +2160,48 @@
     </a>
 
     <script>
+        // Create a circular browser tab icon from the profile picture
+        (function createProfileFavicon() {
+            const favicon = document.getElementById('siteFavicon');
+            if (!favicon) return;
+
+            const profileImage = new Image();
+            profileImage.src = 'Miraj.jpeg';
+
+            profileImage.onload = function () {
+                const size = 64;
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+
+                canvas.width = size;
+                canvas.height = size;
+
+                context.beginPath();
+                context.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+                context.closePath();
+                context.clip();
+
+                const sourceSize = Math.min(profileImage.naturalWidth, profileImage.naturalHeight);
+                const sourceX = (profileImage.naturalWidth - sourceSize) / 2;
+                const sourceY = (profileImage.naturalHeight - sourceSize) / 2;
+
+                context.drawImage(
+                    profileImage,
+                    sourceX,
+                    sourceY,
+                    sourceSize,
+                    sourceSize,
+                    0,
+                    0,
+                    size,
+                    size
+                );
+
+                favicon.type = 'image/png';
+                favicon.href = canvas.toDataURL('image/png');
+            };
+        })();
+
         const pages = document.querySelectorAll('.page');
         const navLinksAll = document.querySelectorAll('.nav-link');
         const pageSelect = document.getElementById('pageSelect');
